@@ -1,9 +1,67 @@
-import React from 'react'
+import React, { useState } from "react";
+import { toast } from "react-toastify";
 
 function HeadAndTail() {
+  const [inputValue, setInputValue] = useState();
+  const [data, setData] = useState([]);
+
+  const omkar =[];
+
+
+
+  const readValue = (e) => {
+    const { value } = e.target;
+    console.log("value:-", value);
+    setInputValue(value);
+  };
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    if (!inputValue) {
+      console.log("first", inputValue);
+      toast.error(" Please select value from dropdown");
+    } else {
+      console.log("second fill", inputValue);
+      toast.success("success");
+      setInputValue("");
+     
+    }
+  };
   return (
-    <div>HeadAndTail</div>
-  )
+    <div className="container mt-5">
+      <div className="text-center">
+        <h1>Head And Tail</h1>
+      </div>
+      <div className="row mt-5">
+        <div className="offset-md-3 col-md-6 ">
+          <div className="card">
+            <div className="card-body">
+              <div className="text-center">
+                <form autoComplete="off" onSubmit={submitHandler}>
+                  <div className="input-group my-3">
+                    <select
+                      className="form-select form-select-lg mby-3"
+                      onChange={readValue}
+                      value={inputValue}
+                    >
+                      <option value="">Select Value</option>
+                      <option value="H">Head-(H)</option>
+                      <option value="T">Tail-(T)</option>
+                    </select>
+                  </div>
+                  <div className="input-group my-3 d-flex justify-content-center">
+                    <button type="submit" className="btn btn-success">
+                      Submit
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default HeadAndTail
+export default HeadAndTail;
