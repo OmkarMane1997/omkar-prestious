@@ -2,24 +2,27 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 
 function HeadAndTail() {
+  //store the single value
   const [inputValue, setInputValue] = useState();
+  //store the full array
   const [data, setData] = useState([]);
+  //store the previos value
   const [previosValue, setPreviosValue] = useState("");
 
   const readValue = (e) => {
     const { value } = e.target;
-    // console.log("value:-", value);
+    console.log("value:-", value);
     setInputValue(value);
   };
 
   const submitHandler = async (e) => {
     e.preventDefault();
     if (!inputValue) {
-      // console.log("first", inputValue);
+      console.log("first", inputValue);
       toast.error(" Please select value from dropdown");
     } else {
-      // console.log("second fill", inputValue);
-      // toast.success("success"); last chang
+      console.log("second fill", inputValue);
+      toast.success("success");
       setData([...data, inputValue]);
       setInputValue("");
       setPreviosValue(inputValue);
@@ -53,13 +56,11 @@ function HeadAndTail() {
                     </button>
                   </div>
                 </form>
-              
-                <div className="d-flex flex-column">
-
-                  {data.map((item, index) => {
-                    return(<div key={index}> {item}</div>)
-                  })}
-                </div>
+                <div>{data.map((item, index) => {
+                 return(
+                 <div key={index}> {item}</div>
+                 )
+                })}</div>
               </div>
             </div>
           </div>
