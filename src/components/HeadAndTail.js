@@ -3,11 +3,9 @@ import { toast } from "react-toastify";
 
 function HeadAndTail() {
   //store the single value
-  const [inputValue, setInputValue] = useState();
+  const [inputValue, setInputValue] = useState("");
   //store the full array
   const [data, setData] = useState([]);
-  //store the previos value
-  const [previosValue, setPreviosValue] = useState("");
 
   const readValue = (e) => {
     const { value } = e.target;
@@ -15,18 +13,29 @@ function HeadAndTail() {
     setInputValue(value);
   };
 
-  const submitHandler = async (e) => {
+  const submitHandler = (e) => {
     e.preventDefault();
     if (!inputValue) {
-      console.log("first", inputValue);
       toast.error(" Please select value from dropdown");
-    } else {
-      console.log("second fill", inputValue);
-      toast.success("success");
-      setData([...data, inputValue]);
-      setInputValue("");
-      setPreviosValue(inputValue);
+      return;
     }
+    if (data.length === 0) {
+      setData(() => [[inputValue]]);
+      setInputValue("");
+      return;
+    }
+
+    const arrayIndex = data[data.length - 1];
+    const lastElement = arrayIndex[arrayIndex.length - 1];
+    const result = [...data];
+
+    if (lastElement === inputValue) {
+      result[result.length - 1] = [...result[result.length - 1], inputValue];
+    } else {
+      result.push([inputValue]);
+    }
+    setData(result);
+    setInputValue("");
   };
   return (
     <div className="container mt-5">
@@ -56,11 +65,17 @@ function HeadAndTail() {
                     </button>
                   </div>
                 </form>
-                <div>{data.map((item, index) => {
-                 return(
-                 <div key={index}> {item}</div>
-                 )
-                })}</div>
+                <div>
+                  <div className="d-flex justify-content-center" >
+                    {data.map((item,index) => (
+                      <div className="d-flex flex-column m-2" key={index}>
+                        {item.map((value, key) => (
+                          <p key={key}>{value}</p>
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -71,3 +86,4 @@ function HeadAndTail() {
 }
 
 export default HeadAndTail;
+
