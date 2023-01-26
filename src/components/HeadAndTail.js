@@ -4,27 +4,25 @@ import { toast } from "react-toastify";
 function HeadAndTail() {
   const [inputValue, setInputValue] = useState();
   const [data, setData] = useState([]);
-
-  const omkar =[];
-
-
+  const [previosValue, setPreviosValue] = useState("");
 
   const readValue = (e) => {
     const { value } = e.target;
-    console.log("value:-", value);
+    // console.log("value:-", value);
     setInputValue(value);
   };
 
   const submitHandler = async (e) => {
     e.preventDefault();
     if (!inputValue) {
-      console.log("first", inputValue);
+      // console.log("first", inputValue);
       toast.error(" Please select value from dropdown");
     } else {
-      console.log("second fill", inputValue);
-      toast.success("success");
+      // console.log("second fill", inputValue);
+      // toast.success("success"); last chang
+      setData([...data, inputValue]);
       setInputValue("");
-     
+      setPreviosValue(inputValue);
     }
   };
   return (
@@ -45,8 +43,8 @@ function HeadAndTail() {
                       value={inputValue}
                     >
                       <option value="">Select Value</option>
-                      <option value="H">Head-(H)</option>
-                      <option value="T">Tail-(T)</option>
+                      <option value="H">Head-( H )</option>
+                      <option value="T">Tail-( T )</option>
                     </select>
                   </div>
                   <div className="input-group my-3 d-flex justify-content-center">
@@ -55,6 +53,13 @@ function HeadAndTail() {
                     </button>
                   </div>
                 </form>
+              
+                <div className="d-flex flex-column">
+
+                  {data.map((item, index) => {
+                    return(<div key={index}> {item}</div>)
+                  })}
+                </div>
               </div>
             </div>
           </div>
