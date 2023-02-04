@@ -6,6 +6,10 @@ import About from "./components/About";
 import HeadAndTail from "./components/HeadAndTail";
 import PageNotFound from "./components/PageNotFound";
 import { ToastContainer } from "react-toastify";
+import UseMemoDemo from "./components/UseMemoDemo";
+import UseCallBackDemo from "./components/UseCallBackDemo";
+import UseReducerDemo from "./components/UseReducerDemo";
+
 function App() {
   return (
     <>
@@ -28,6 +32,9 @@ function App() {
           <Route path={"/Home"} element={<Home />} />
           <Route path={"/About"} element={<About />} />
           <Route path={"/HeadAndTail"} element={<HeadAndTail />} />
+          <Route path={'/UseMemoDemo'} element={<UseMemoDemo/>}/>
+          <Route path={'/UseCallBackDemo'} element={<UseCallBackDemo/>}/>
+          <Route path={'/useReducerDemo'} element={<UseReducerDemo/>}/>
           <Route path={"/*"} element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>

@@ -66,8 +66,8 @@ function HeadAndTail() {
                   </div>
                 </form>
                 <div>
-                  <div className="d-flex justify-content-center" >
-                    {data.map((item,index) => (
+                  <div className="d-flex justify-content-center">
+                    {data.map((item, index) => (
                       <div className="d-flex flex-column m-2" key={index}>
                         {item.map((value, key) => (
                           <p key={key}>{value}</p>
@@ -86,4 +86,3 @@ function HeadAndTail() {
 }
 
 export default HeadAndTail;
-
